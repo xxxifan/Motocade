@@ -2,20 +2,20 @@ package com.xxxifan.motorcade.ui
 
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import android.widget.Button
 import com.avos.avoscloud.AVFile
 import com.avos.avoscloud.im.v2.AVIMException
-import com.avos.avoscloud.im.v2.AVIMMessage
 import com.avos.avoscloud.im.v2.audio.AVIMAudioRecorder
 import com.avos.avoscloud.im.v2.audio.AVIMAudioRecorder.RecordEventListener
 import com.avos.avoscloud.im.v2.callback.AVIMConversationCallback
 import com.avos.avoscloud.im.v2.messages.AVIMAudioMessage
-import com.avos.avoscloud.im.v2.messages.AVIMTextMessage
 import com.xxxifan.motorcade.App
 import com.xxxifan.motorcade.ChatManager
 import com.xxxifan.motorcade.IntercomMessage
 import com.xxxifan.motorcade.R
+import com.xxxifan.motorcade.send
 import com.yanzhenjie.permission.AndPermission
 import com.yanzhenjie.permission.Permission
 import kotlinx.android.synthetic.main.activity_main.createGroupBtn
@@ -32,7 +32,9 @@ class MainActivity : AppCompatActivity() {
     private val outputFile = File(audioPath, "${System.currentTimeMillis()}.file")
   }
 
+  // TODO: 2018/8/28 file cannot be same with multiple time usage.
   private val recorder = AVIMAudioRecorder(outputFile.path, RecordListener)
+  @Volatile private var recoding = false
 
   @Subscribe
   fun onUpdateStateText(str: String) {
@@ -91,19 +93,31 @@ class MainActivity : AppCompatActivity() {
 
   private fun recordMessage() {
     recorder.start()
-    stateText.append(", Recording")
-    ChatManager.currentConversation?.sendMessage(IntercomMessage(part = IntercomMessage.START), object : AVIMConversationCallback() {
-      override fun done(e: AVIMException?) {
-        e?.printStackTrace() ?: kotlin.run {
-          EventBus.getDefault().post(", done")
-        }
-      }
-    })
+    recoding = true
 
+    stateText.append(", Recording")
+    IntercomMessage(part = IntercomMessage.START)
+        .send(callback = object : AVIMConversationCallback() {
+          override fun done(e: AVIMException?) {
+            e?.printStackTrace() ?: kotlin.run {
+              EventBus.getDefault().post(", send start")
+            }
+          }
+        })
+    Thread {
+      while (recoding) {
+        Thread.sleep(500)
+        val length = outputFile.length()
+        val file = AVFile.withFile("testaudio-$length.aac", outputFile)
+        val im = AVIMAudioMessage(file).apply { text = "$length" }
+        IntercomMessage(audio = im).send()
+      }
+    }.start()
   }
 
   private fun finishRecord() {
     recorder.stop()
+    recoding = false
     stateText.append(", Sending")
   }
 
@@ -116,16 +130,16 @@ class MainActivity : AppCompatActivity() {
 
   private object RecordListener : RecordEventListener {
     override fun onFinishedRecord(time: Long, msg: String?) {
-      val file = AVFile.withFile("testaudio.aac", outputFile)
-      val im = AVIMAudioMessage(file).apply { text = "${outputFile.length()}" }
-
-      ChatManager.currentConversation?.sendMessage(im, object : AVIMConversationCallback() {
-        override fun done(e: AVIMException?) {
-          e?.printStackTrace() ?: kotlin.run {
-            EventBus.getDefault().post(", done")
+      Handler().postDelayed({
+        IntercomMessage(
+            part = IntercomMessage.END).send(callback = object : AVIMConversationCallback() {
+          override fun done(e: AVIMException?) {
+            e?.printStackTrace() ?: kotlin.run {
+              EventBus.getDefault().post(", done")
+            }
           }
-        }
-      })
+        })
+      }, 500)
     }
 
     override fun onStartRecord() {
