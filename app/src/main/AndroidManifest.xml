@@ -28,12 +28,20 @@
     </receiver>
 
     <activity android:name=".ui.MainActivity">
+      <!--<intent-filter>-->
+        <!--<action android:name="android.intent.action.MAIN"/>-->
+
+        <!--<category android:name="android.intent.category.LAUNCHER"/>-->
+      <!--</intent-filter>-->
+    </activity>
+    <activity android:name=".ui.oil.OilMainActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
 
         <category android:name="android.intent.category.LAUNCHER"/>
       </intent-filter>
     </activity>
+    <activity android:name=".ui.oil.OilRecordActivity"/>
   </application>
 
 </manifest>
