@@ -14,6 +14,7 @@ android {
     versionCode library_code as int
     testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     multiDexEnabled true
+    ndk { abiFilters "armeabi-v7a", "arm64-v8a", "x86", "x86_64" }
   }
   buildTypes {
     release {
@@ -49,13 +50,20 @@ dependencies {
   implementation("cn.leancloud.android:avoscloud-statistics:$leancloud_version")
   implementation("cn.leancloud.android:avoscloud-sns:${leancloud_version}@aar")
 
-  // anko
   // Anko Layouts
-  implementation "org.jetbrains.anko:anko-sdk25:$anko_version"
+  implementation "org.jetbrains.anko:anko-sdk27:$anko_version"
   implementation "org.jetbrains.anko:anko-design:$anko_version"
 
   // Coroutine listeners for Anko Layouts
   implementation "org.jetbrains.anko:anko-commons:$anko_version"
   implementation "org.jetbrains.anko:anko-sdk25-coroutines:$anko_version"
-  implementation "org.jetbrains.anko:anko-appcompat-v7-coroutines:$anko_version"
+  implementation("org.jetbrains.anko:anko-appcompat-v7-coroutines:$anko_version") {
+    exclude group: 'com.android.support'
+  }
+
+  // Amap
+  implementation 'com.amap.api:map2d:5.2.0'
+  implementation 'com.amap.api:navi-3dmap:6.3.0_3dmap6.4.1'
+  implementation 'com.amap.api:search:6.1.0'
+  implementation 'com.amap.api:location:4.2.0'
 }

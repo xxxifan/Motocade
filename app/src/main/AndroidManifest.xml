@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.xxxifan.motorcade">
 
-  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-  <uses-permission android:name="android.permission.INTERNET"/>
-  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-  <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-  <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+  <uses-permission android:name="android.permission.INTERNET" />
+  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+  <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+  <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+  <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+  <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+  <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
   <uses-permission android:name="android.permission.RECORD_AUDIO" />
+  <uses-permission android:name="android.permission.WAKE_LOCK" />
+  <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS"/>
+  <uses-permission android:name="android.permission.BLUETOOTH"/>
+  <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
 
   <application
       android:name=".App"
@@ -16,32 +24,39 @@
       android:label="@string/app_name"
       android:roundIcon="@mipmap/ic_launcher_round"
       android:supportsRtl="true"
-      android:theme="@style/AppTheme">
-    <service android:name="com.avos.avoscloud.PushService"/>
+      android:theme="@style/AppTheme"
+      tools:ignore="GoogleAppIndexingWarning">
+    <meta-data
+        android:name="com.amap.api.v2.apikey"
+        android:value="eb02cf9245e8ac3150c9b03602b524eb" />
+
+    <service android:name="com.amap.api.location.APSService" />
+
+    <service android:name="com.avos.avoscloud.PushService" />
 
     <receiver android:name="com.avos.avoscloud.AVBroadcastReceiver">
       <intent-filter>
-        <action android:name="android.intent.action.BOOT_COMPLETED"/>
-        <action android:name="android.intent.action.USER_PRESENT"/>
-        <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+        <action android:name="android.intent.action.BOOT_COMPLETED" />
+        <action android:name="android.intent.action.USER_PRESENT" />
+        <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
       </intent-filter>
     </receiver>
 
     <activity android:name=".ui.MainActivity">
       <!--<intent-filter>-->
-        <!--<action android:name="android.intent.action.MAIN"/>-->
+      <!--<action android:name="android.intent.action.MAIN"/>-->
 
-        <!--<category android:name="android.intent.category.LAUNCHER"/>-->
+      <!--<category android:name="android.intent.category.LAUNCHER"/>-->
       <!--</intent-filter>-->
     </activity>
-    <activity android:name=".ui.oil.OilMainActivity">
+    <activity android:name=".ui.oil.GasolineActivity">
       <intent-filter>
-        <action android:name="android.intent.action.MAIN"/>
+        <action android:name="android.intent.action.MAIN" />
 
-        <category android:name="android.intent.category.LAUNCHER"/>
+        <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
-    <activity android:name=".ui.oil.OilRecordActivity"/>
+    <activity android:name=".ui.oil.GasRecordActivity" />
   </application>
 
 </manifest>
