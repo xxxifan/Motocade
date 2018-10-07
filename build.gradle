@@ -3,7 +3,7 @@
 buildscript {
   ext {
     // android sdk
-    minSdk = 20
+    minSdk = 21
     sdk = 28
 
     // library
@@ -14,7 +14,7 @@ buildscript {
     kotlin_version = '1.2.71'
     coroutines_version = '0.30.1'
     anko_version = "0.10.7"
-    support_lib = "27.1.1"
+    support_lib = "28.0.0"
     okhttp = "3.10.0"
     retrofit = "2.3.0"
     leancloud_version = 'v4.7.1'

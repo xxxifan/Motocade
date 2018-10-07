@@ -13,6 +13,7 @@ android {
     versionName library_version as String
     versionCode library_code as int
     testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    multiDexEnabled true
   }
   buildTypes {
     release {
