@@ -31,4 +31,5 @@ fun Activity.request(vararg permissions: String, callback: (granted: Boolean) ->
       .rationale { context, data, executor ->
         executor.execute()
       }
+      .start()
 }

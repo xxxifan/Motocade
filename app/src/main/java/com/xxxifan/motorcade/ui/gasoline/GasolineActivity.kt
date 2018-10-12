@@ -1,4 +1,4 @@
-package com.xxxifan.motorcade.ui.oil
+package com.xxxifan.motorcade.ui.gasoline
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity

@@ -13,7 +13,7 @@ object AmapHelper {
   fun fix(interval: Long, listener: AMapLocationListener) {
     val options = AMapLocationClientOption()
     options.locationMode = AMapLocationMode.Hight_Accuracy
-    if (interval > 0) {
+    if (interval <= 0) {
       options.isOnceLocation = true
     } else {
       options.interval = interval

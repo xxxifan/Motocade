@@ -29,12 +29,17 @@ android {
   lintOptions {
     abortOnError false
   }
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
 }
 
 dependencies {
   implementation fileTree(dir: 'libs', include: ['*.jar'])
   implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
   implementation "com.android.support:design:$support_lib"
+  implementation "com.android.support:gridlayout-v7:$support_lib"
   testImplementation 'junit:junit:4.12'
   androidTestImplementation 'com.android.support.test:runner:1.0.2'
   androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
@@ -51,7 +56,7 @@ dependencies {
   implementation("cn.leancloud.android:avoscloud-sns:${leancloud_version}@aar")
 
   // Anko Layouts
-  implementation "org.jetbrains.anko:anko-sdk27:$anko_version"
+  implementation "org.jetbrains.anko:anko-sdk25:$anko_version"
   implementation "org.jetbrains.anko:anko-design:$anko_version"
 
   // Coroutine listeners for Anko Layouts
@@ -66,4 +71,14 @@ dependencies {
   implementation 'com.amap.api:navi-3dmap:6.3.0_3dmap6.4.1'
   implementation 'com.amap.api:search:6.1.0'
   implementation 'com.amap.api:location:4.2.0'
+
+  implementation('com.philliphsu:bottomsheetpickers:2.4.1') {
+    exclude group: 'com.android.support'
+  }
+}
+
+kotlin  {
+  experimental  {
+    coroutines "enable"
+  }
 }
