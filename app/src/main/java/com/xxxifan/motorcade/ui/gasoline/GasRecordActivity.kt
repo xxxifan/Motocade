@@ -18,6 +18,8 @@ import java.util.Locale
 
 class GasRecordActivity : AppCompatActivity() {
 
+  private var province:String = ""
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.gas_record)
@@ -54,11 +56,14 @@ class GasRecordActivity : AppCompatActivity() {
 
   override fun onResume() {
     super.onResume()
-    request(*Permission.Group.LOCATION) { granted ->
-      if (granted) {
-        AmapHelper.fix(0, AMapLocationListener {
-          it.city
-        })
+    if (province.isEmpty()) {
+      request(*Permission.Group.LOCATION) { granted ->
+        if (granted) {
+          AmapHelper.fix(0, AMapLocationListener {
+            province = it.province
+            PriceFetcher.get(province)
+          })
+        }
       }
     }
   }

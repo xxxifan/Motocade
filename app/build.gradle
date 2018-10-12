@@ -72,6 +72,9 @@ dependencies {
   implementation 'com.amap.api:search:6.1.0'
   implementation 'com.amap.api:location:4.2.0'
 
+  implementation 'org.jsoup:jsoup:1.11.3'
+  implementation 'com.github.promeg:tinypinyin:2.0.3'
+  implementation 'com.github.promeg:tinypinyin-lexicons-android-cncity:2.0.3'
   implementation('com.philliphsu:bottomsheetpickers:2.4.1') {
     exclude group: 'com.android.support'
   }
