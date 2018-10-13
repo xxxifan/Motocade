@@ -3,8 +3,8 @@ package com.xxxifan.motorcade.ui
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
-import android.support.v7.app.AppCompatActivity
 import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
 import com.avos.avoscloud.AVFile
 import com.avos.avoscloud.im.v2.AVIMException
 import com.avos.avoscloud.im.v2.audio.AVIMAudioRecorder

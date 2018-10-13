@@ -1,8 +1,8 @@
 package com.xxxifan.motorcade.ui.gasoline
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.view.Gravity
+import androidx.appcompat.app.AppCompatActivity
 import org.jetbrains.anko.button
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast

@@ -18,8 +18,19 @@ object AmapHelper {
     } else {
       options.interval = interval
     }
+    options.isMockEnable = true
     locationClient.setLocationOption(options)
-    locationClient.setLocationListener(listener)
+    if (interval < 0) {
+      // one shot fix will handle stopLocation by itself
+      locationClient.setLocationListener {
+        listener.onLocationChanged(it)
+        AmapHelper.locationClient.stopLocation()
+      }
+    } else {
+      // continuance fix will handle stopLocation by listener
+      locationClient.setLocationListener(listener)
+    }
     locationClient.startLocation()
   }
+
 }
