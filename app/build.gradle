@@ -37,16 +37,24 @@ android {
 
 dependencies {
   implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+  // platform
   implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
   implementation "com.android.support:design:$support_lib"
   implementation "com.android.support:gridlayout-v7:$support_lib"
+  implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
+  implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
   testImplementation 'junit:junit:4.12'
   androidTestImplementation 'com.android.support.test:runner:1.0.2'
   androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
+  // basic tools
+  implementation "com.squareup.okhttp3:okhttp:$okhttp"
   implementation 'com.yanzhenjie:permission:2.0.0-rc12'
   implementation 'org.greenrobot:eventbus:3.1.1'
 
+  // Leancloud
+  implementation 'org.apache.httpcomponents:httpcore:4.4.10'
   implementation("cn.leancloud.android:avoscloud-sdk:$leancloud_version")
   implementation("cn.leancloud.android:avoscloud-push:${leancloud_version}@aar") {
     transitive = true
@@ -72,12 +80,14 @@ dependencies {
   implementation 'com.amap.api:search:6.1.0'
   implementation 'com.amap.api:location:4.2.0'
 
+  // misc
   implementation 'org.jsoup:jsoup:1.11.3'
-  implementation 'com.github.promeg:tinypinyin:2.0.3'
-  implementation 'com.github.promeg:tinypinyin-lexicons-android-cncity:2.0.3'
+//  implementation 'com.github.promeg:tinypinyin:2.0.3'
+//  implementation 'com.github.promeg:tinypinyin-lexicons-android-cncity:2.0.3'
   implementation('com.philliphsu:bottomsheetpickers:2.4.1') {
     exclude group: 'com.android.support'
   }
+  implementation 'com.afollestad.material-dialogs:core:0.9.6.0'
 }
 
 kotlin  {

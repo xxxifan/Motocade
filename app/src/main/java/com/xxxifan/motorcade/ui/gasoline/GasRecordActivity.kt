@@ -9,6 +9,7 @@ import com.xxxifan.motorcade.AmapHelper
 import com.xxxifan.motorcade.R
 import com.xxxifan.motorcade.request
 import com.yanzhenjie.permission.Permission
+import kotlinx.android.synthetic.main.gas_record.gasLabelText
 import kotlinx.android.synthetic.main.gas_record.gasTimeText
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -61,7 +62,17 @@ class GasRecordActivity : AppCompatActivity() {
         if (granted) {
           AmapHelper.fix(0, AMapLocationListener {
             province = it.province
-            PriceFetcher.get(province)
+            if (province.isEmpty()) {
+              gasLabelText.text = "未定位"
+            } else {
+              PriceFetcher.get(province) {
+                println("receiving $it")
+                gasLabelText.text = "$province #92"
+                gasLabelText.setOnClickListener {
+
+                }
+              }
+            }
           })
         }
       }
