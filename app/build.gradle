@@ -45,8 +45,8 @@ dependencies {
   implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
   implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
   testImplementation 'junit:junit:4.12'
-  androidTestImplementation 'androidx.test:runner:1.1.0-beta02'
-  androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-beta02'
+  androidTestImplementation 'androidx.test:runner:1.1.0'
+  androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
 
   // basic tools
   implementation "com.squareup.okhttp3:okhttp:$okhttp"
@@ -61,7 +61,7 @@ dependencies {
     exclude group: 'com.android.support'
   }
   implementation("cn.leancloud.android:avoscloud-statistics:$leancloud_version")
-  implementation("cn.leancloud.android:avoscloud-sns:${leancloud_version}@aar")
+//  implementation("cn.leancloud.android:avoscloud-sns:${leancloud_version}@aar")
 
   // Anko Layouts
   implementation "org.jetbrains.anko:anko-sdk25:$anko_version"
@@ -89,10 +89,4 @@ dependencies {
 //  }
   implementation 'com.wdullaer:materialdatetimepicker:4.0.1'
   implementation 'com.afollestad.material-dialogs:core:2.0.0-beta3'
-}
-
-kotlin  {
-  experimental  {
-    coroutines "enable"
-  }
 }
