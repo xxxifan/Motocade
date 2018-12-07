@@ -88,5 +88,5 @@ dependencies {
 //    exclude group: 'com.android.support'
 //  }
   implementation 'com.wdullaer:materialdatetimepicker:4.0.1'
-  implementation 'com.afollestad.material-dialogs:core:2.0.0-beta3'
+  implementation 'com.afollestad.material-dialogs:core:2.0.0-rc3'
 }
