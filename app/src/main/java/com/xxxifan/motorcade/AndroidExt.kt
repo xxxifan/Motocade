@@ -1,8 +1,11 @@
 package com.xxxifan.motorcade
 
 import android.app.Activity
+import android.app.Application
 import android.preference.PreferenceManager
 import com.yanzhenjie.permission.AndPermission
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 val sharedPreference
   get() = PreferenceManager.getDefaultSharedPreferences(App.ctx)!!
@@ -32,4 +35,8 @@ fun Activity.request(vararg permissions: String, callback: (granted: Boolean) ->
         executor.execute()
       }
       .start()
+}
+
+fun Application.install(block: () -> Unit) {
+  GlobalScope.launch { block() }
 }
