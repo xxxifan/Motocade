@@ -45,8 +45,8 @@ dependencies {
   implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
   implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
   testImplementation 'junit:junit:4.12'
-  androidTestImplementation 'androidx.test:runner:1.1.0'
-  androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
+  androidTestImplementation 'androidx.test:runner:1.1.1'
+  androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
 
   // basic tools
   implementation "com.squareup.okhttp3:okhttp:$okhttp"
@@ -75,10 +75,11 @@ dependencies {
   }
 
   // Amap
-  implementation 'com.amap.api:map2d:5.2.0'
-  implementation 'com.amap.api:navi-3dmap:6.3.0_3dmap6.4.1'
-  implementation 'com.amap.api:search:6.1.0'
-  implementation 'com.amap.api:location:4.2.0'
+  implementation 'com.amap.api:map2d:latest.integration'
+  implementation 'com.amap.api:3dmap:latest.integration'
+  implementation 'com.amap.api:navi-3dmap:latest.integration'
+  implementation 'com.amap.api:search:latest.integration'
+  implementation 'com.amap.api:location:latest.integration'
 
   // misc
   implementation 'org.jsoup:jsoup:1.11.3'
@@ -88,5 +89,5 @@ dependencies {
 //    exclude group: 'com.android.support'
 //  }
   implementation 'com.wdullaer:materialdatetimepicker:4.0.1'
-  implementation 'com.afollestad.material-dialogs:core:2.0.0-rc3'
+  implementation 'com.afollestad.material-dialogs:core:2.0.3'
 }
