@@ -5,12 +5,9 @@ import android.os.Bundle
 import android.os.Handler
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import com.avos.avoscloud.AVFile
 import com.avos.avoscloud.im.v2.AVIMException
-import com.avos.avoscloud.im.v2.audio.AVIMAudioRecorder
 import com.avos.avoscloud.im.v2.audio.AVIMAudioRecorder.RecordEventListener
 import com.avos.avoscloud.im.v2.callback.AVIMConversationCallback
-import com.avos.avoscloud.im.v2.messages.AVIMAudioMessage
 import com.xxxifan.motorcade.App
 import com.xxxifan.motorcade.ChatManager
 import com.xxxifan.motorcade.IntercomMessage
@@ -31,10 +28,6 @@ class MainActivity : AppCompatActivity() {
     private val audioPath = File(App.ctx.cacheDir, "media").apply { mkdirs() }
     private val outputFile = File(audioPath, "${System.currentTimeMillis()}.file")
   }
-
-  // TODO: 2018/8/28 file cannot be same with multiple time usage.
-  private val recorder = AVIMAudioRecorder(outputFile.path, RecordListener)
-  @Volatile private var recoding = false
 
   @Subscribe
   fun onUpdateStateText(str: String) {
@@ -92,32 +85,32 @@ class MainActivity : AppCompatActivity() {
   }
 
   private fun recordMessage() {
-    recorder.start()
-    recoding = true
-
-    stateText.append(", Recording")
-    IntercomMessage(part = IntercomMessage.START)
-        .send(callback = object : AVIMConversationCallback() {
-          override fun done(e: AVIMException?) {
-            e?.printStackTrace() ?: kotlin.run {
-              EventBus.getDefault().post(", send start")
-            }
-          }
-        })
-    Thread {
-      while (recoding) {
-        Thread.sleep(500)
-        val length = outputFile.length()
-        val file = AVFile.withFile("testaudio-$length.aac", outputFile)
-        val im = AVIMAudioMessage(file).apply { text = "$length" }
-        IntercomMessage(audio = im).send()
-      }
-    }.start()
+//    recorder.start()
+//    recoding = true
+//
+//    stateText.append(", Recording")
+//    IntercomMessage(part = IntercomMessage.START)
+//        .send(callback = object : AVIMConversationCallback() {
+//          override fun done(e: AVIMException?) {
+//            e?.printStackTrace() ?: kotlin.run {
+//              EventBus.getDefault().post(", send start")
+//            }
+//          }
+//        })
+//    Thread {
+//      while (recoding) {
+//        Thread.sleep(500)
+//        val length = outputFile.length()
+//        val file = AVFile.withFile("testaudio-$length.aac", outputFile)
+//        val im = AVIMAudioMessage(file).apply { text = "$length" }
+//        IntercomMessage(audio = im).send()
+//      }
+//    }.start()
   }
 
   private fun finishRecord() {
-    recorder.stop()
-    recoding = false
+//    recorder.stop()
+//    recoding = false
     stateText.append(", Sending")
   }
 

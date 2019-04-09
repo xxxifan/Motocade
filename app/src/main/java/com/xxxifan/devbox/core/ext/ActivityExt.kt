@@ -1,14 +1,9 @@
-package com.xxxifan.motorcade
+package com.xxxifan.devbox.core.ext
 
 import android.app.Activity
-import android.app.Application
-import android.preference.PreferenceManager
+import com.afollestad.materialdialogs.MaterialDialog
+import com.xxxifan.motorcade.R.string
 import com.yanzhenjie.permission.AndPermission
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-
-val sharedPreference
-  get() = PreferenceManager.getDefaultSharedPreferences(App.ctx)!!
 
 fun Activity.request(vararg permissions: String, callback: (granted: Boolean) -> Unit) {
   AndPermission.with(this)
@@ -23,10 +18,7 @@ fun Activity.request(vararg permissions: String, callback: (granted: Boolean) ->
           AndPermission.with(this)
               .runtime()
               .setting()
-              .onComeback {
-                callback(true)
-              }
-              .start()
+              .start(PERMISSION_REQUEST_CODE)
         } else {
           callback(false)
         }
@@ -37,6 +29,6 @@ fun Activity.request(vararg permissions: String, callback: (granted: Boolean) ->
       .start()
 }
 
-fun Application.install(block: () -> Unit) {
-  GlobalScope.launch { block() }
+fun Activity.permissionDialog() {
+  MaterialDialog(this).title(string.title_alert).message(string.msg_permissions)
 }

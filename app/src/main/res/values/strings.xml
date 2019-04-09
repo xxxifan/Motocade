@@ -1,3 +1,5 @@
 <resources>
   <string name="app_name">Motorcade</string>
+  <string name="title_alert">Alert</string>
+  <string name="msg_permissions">App is requiring following permissions to keep running normally, please grant these permission in settings and come back.</string>
 </resources>

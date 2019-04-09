@@ -12,9 +12,9 @@ import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog
 import com.xxxifan.motorcade.AmapHelper
 import com.xxxifan.motorcade.R
-import com.xxxifan.motorcade.request
+import com.xxxifan.devbox.core.ext.request
 import com.xxxifan.motorcade.ui.gasoline.model.GasRecord
-import com.yanzhenjie.permission.Permission
+import com.yanzhenjie.permission.runtime.Permission
 import kotlinx.android.synthetic.main.gas_record.gasLabelText
 import kotlinx.android.synthetic.main.gas_record.gasPriceText
 import kotlinx.android.synthetic.main.gas_record.gasTimeText

@@ -50,7 +50,7 @@ dependencies {
 
   // basic tools
   implementation "com.squareup.okhttp3:okhttp:$okhttp"
-  implementation 'com.yanzhenjie:permission:2.0.0-rc12'
+  implementation 'com.yanzhenjie.permission:x:2.0.1'
   implementation 'org.greenrobot:eventbus:3.1.1'
 
   // Leancloud
@@ -60,7 +60,6 @@ dependencies {
     transitive = true
     exclude group: 'com.android.support'
   }
-  implementation("cn.leancloud.android:avoscloud-statistics:$leancloud_version")
 //  implementation("cn.leancloud.android:avoscloud-sns:${leancloud_version}@aar")
 
   // Anko Layouts
@@ -75,9 +74,9 @@ dependencies {
   }
 
   // Amap
-  implementation 'com.amap.api:map2d:latest.integration'
+//  implementation 'com.amap.api:map2d:latest.integration'
   implementation 'com.amap.api:3dmap:latest.integration'
-  implementation 'com.amap.api:navi-3dmap:latest.integration'
+//  implementation 'com.amap.api:navi-3dmap:latest.integration'
   implementation 'com.amap.api:search:latest.integration'
   implementation 'com.amap.api:location:latest.integration'
 
